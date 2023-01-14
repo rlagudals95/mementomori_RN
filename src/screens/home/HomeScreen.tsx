@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { View, FlatList, Image } from "react-native";
+import { View, FlatList, Image, Dimensions } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import Icon from "react-native-dynamic-vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -87,9 +87,13 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
     </View>
   );
 
-  
   const Webview = () => (
-    <View style={styles.contentContainer}>
+    <View
+      style={{
+        width: Dimensions.get("window").width,
+        height: Dimensions.get("window").height,
+      }}
+    >
       <WebView
         originWhitelist={["*"]}
         domStorageEnabled
@@ -102,11 +106,10 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
     </View>
   );
 
+
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
-      <Content />
-      <Webview/>
+      <Webview />
     </SafeAreaView>
   );
 };
